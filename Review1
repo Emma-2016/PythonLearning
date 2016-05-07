@@ -1,0 +1,168 @@
+#Came across python classes by Charles Severance on Coursera today.
+
+Python Data Structure
+#----------------------------------------------------------------------------------
+String:
+>>> s = 'Hello World'
+>>> type(s)
+<type 'str'>
+>>> dir(s)
+['capitalize', 'center', 'count', 'decode', 'encode', 'endswith', 'expandtabs', 'find', 'format', 'index', 'isalnum', 'isalpha', 'isdigit', 'islower', 'isspace', 'istitle', 'isupper', 'join', 'ljust', 'lower', 'lstrip', 'partition', 'replace', 'rfind', 'rindex', 'rjust', 'rpartition', 'rsplit', 'rstrip', 'split', 'splitlines', 'startswith', 'strip', 'swapcase', 'title', 'translate', 'upper', 'zfill']
+#did not notice that there are so many method associated with string.
+
+>>> for letter in s:
+...     print letter
+
+>>> index = 0
+>>> while index < len(s):
+...     letter = s[index]
+...     print letter
+...     index += 1
+
+>>> count = 0
+>>> for letter in s:
+...     if letter == 'o':
+...             count += 1
+... 
+>>> print count
+#letter is the iterable variable
+#in is the logical operator
+
+>>> s.replace('o', 'O')
+'HellO WOrld'
+>>> s
+'Hello World'
+>>> s.replace('o', 'O', 1)
+'HellO World'
+>>> s
+'Hello World'
+
+>>> len('Hello world')
+11
+>>> 'Hello world'.rjust(13)   #adjust the position?
+'  Hello world'
+>>> 'Hello world'.center(13)
+' Hello world '
+
+>>> 'hello world'.capitalize()
+'Hello world'
+
+>>> 'Hello world'.startswith('H')
+True
+>>> 'Hello world'.startswith('h')
+False
+
+>>> 'Hello World'.isupper()
+False
+>>> 'Hello World'.islower()
+False
+>>> 'Hello World'.upper()
+'HELLO WORLD'
+>>> s.upper()
+'HELLO WORLD'
+>>> s
+'Hello World'
+
+s.strip(rm)	#当rm为空时，默认删除空白符（包括'\n', '\r',  '\t',  ' ')
+这里的rm删除序列是只要边（开头或结尾）上的字符在删除序列内，就删除掉。
+>>> a = '123abc'
+>>> a.strip('21')
+'3abc'   结果是一样的
+>>> a.strip('12')
+'3abc'
+
+
+#----------------------------------------------------------------------------------
+File:
+fname = raw_input('Enter a file name: ')
+if len(fname) == 0: #set the default input file
+	fname = 'a default file is set.'
+fhand = open(fname)
+for line in fhand:
+	line = line.rstrip().upper()
+	print line
+
+fhand = open('mbox-short.txt')
+inp = fhand.read()  #when the file is small, read in all the content once
+print len(inp)
+
+#----------------------------------------------------------------------------------
+dictionary:
+#Most useful is the get(), to count the most frequent word
+
+count = dict()  #another way to represent a dictionary
+line = raw_input('Please Enter your words: ')
+words = line.split()
+for i in words:
+	count[i] = count.get(i, 0) + 1
+print count
+
+for k, v in D.items():
+	print k, v
+
+
+count = {}
+handle = open(name)
+for line in handle:
+    if not line.startswith('From '): continue
+    time = line.rstrip().split()[-2]
+    hour = time.split(':')[0]
+    count[hour] = count.get(hour, 0) + 1
+
+L = [(k, v) for k, v in count.items()]
+L.sort()
+for i,j in L:   #when the element of list is a tuple, can use i, j to represent each element in the tuple
+    print i, j
+
+
+#----------------------------------------------------------------------------------
+import re
+#re.search('pattern', inputString), return True or False, somewhat like find() of string.
+#re.findall('pattern', inputString), return a list. If not find, it is an empty list
+
+fhand = open('file.txt')
+for line in fhand:
+  line = line.rstrip()
+  if re.search('^From: ', line):  #if line.startswith('From: ')
+    print line
+#the dot match any character
+#the '\S' match any non-whitespace character
+#the asterisk means any number of times
+#the plus means one or more time
+
+import re
+x = 'My 2 favorite numbers are 19 and 42'
+y = re.findall('[0-9+', x)
+print y
+
+import re
+x = 'From: Using the : character'
+y = re.findall('^F.+?:', x) #using '?' to indicate python not to be greedy
+print y
+
+import re
+file_name = raw_input('Please Enter your file: ')
+fhand = open(file_name)
+total = 0
+for line in fhand:
+    line.rstrip()
+    numbers = re.findall('[0-9]+', line)
+    if len(numbers) == 0: continue
+    numbers = [int(v) for v in numbers]
+    total += sum(numbers)
+print total
+
+#------------------------------------------------
+Class - A template
+Methods - A defined capability of a class
+Field or attribute - A bit of data in a class
+Object or Instance - A particular instance of a class
+Constructor - A method which is called when the instance / object is created.
+Inheritance - The ability ot take a class and extend it to make a new class.
+
+Constructor:
+The primary purpose of the constructor is to set up some instance variable to have the proper initial values when the object is created.
+The constructor is typically used to set up variables.
+In object oriented programming, a constructor in a class is a special block of statments called when an object is created.
+Constructors cna have additonal parameters. These can be used to set up instance variables for the particular instance of the class.
+'Subclasses' are more specialized versions of a class, which inherit attributes and behaviors from their parent classes, and can introduce their own.
