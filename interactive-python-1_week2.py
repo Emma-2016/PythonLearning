@@ -52,3 +52,34 @@ def print_digits():
     tens = (int(number)-ones) / 10
     print 'The tens digit is', tens, 'and the ones digit is', ones
 print_digits()
+
+
+import random
+def rpsls():
+    rank_str = {'rock':0, 'spock':1, 'paper':2, 'lizard':3, 'scissors':4}
+    rank_num = {0:'rock', 1:'spock', 2:'paper', 3:'lizard', 4:'scissors'}
+
+    player_choice = raw_input('Please enter your choice: ')
+    while not player_choice in rank_str:
+        print 'Not correct input, please try again!'
+        player_choice = raw_input('Please enter your choice: ')
+
+    player_choice_num = rank_str[player_choice]
+    computer_choice_num = random.randrange(0, 5)
+    computer_choice = rank_num[computer_choice_num]
+
+    print 'Player chooses', player_choice
+    print 'Computer chooses', computer_choice
+
+    player_win_num = (player_choice_num - 2) % 5
+    player_lose_num = (player_choice_num + 2) % 5
+    if (computer_choice_num == player_win_num or
+        computer_choice_num == ((player_win_num + 1) % 5)):
+        print 'Player wins!\n'
+
+    elif (computer_choice_num == player_lose_num or
+            computer_choice_num == ((player_lose_num -1) % 5)):
+        print 'Computer wins!\n'
+
+    else:
+        print 'Player and computer tie!\n'
