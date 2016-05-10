@@ -162,3 +162,72 @@ frame.add_input('Enter your number', enter, 150)
 
 #start a frame
 frame.start()
+
+print'\n================================================'
+print 'Exercise 8:'
+import simplegui
+import random
+
+#define global
+secret_number = 0
+tag = 0
+count = 0
+
+def range_100():
+    global tag
+    tag = 7
+    new_game()
+
+def range_1000():
+    global tag
+    tag = 10
+    new_game()
+
+def new_game():
+    global count
+    global tag
+    tag = tag
+    global secret_number
+    print 'A new game start'
+    if tag == 7:
+        secret_number = random.randrange(0, 100)
+    if tag == 10:
+        secret_number = random.randrange(0, 1000)
+    count = 0
+    print
+
+#define handler functions
+def input_guess(guess):
+    guess = int(guess)
+    global count
+    count += 1
+    print 'Guess is', guess
+    if (7 - count >= 0 and tag ==7) or (10 - count >= 0 and tag == 10):
+        if guess < secret_number:
+            print 'Higher',
+            print 'and times to guess is', tag - count, 'left',
+            print 'tag is', tag
+        elif guess > secret_number:
+            print 'Lower',
+            print 'and times to guess is', tag - count, 'left',
+            print 'tag is', tag
+        else:
+            print 'Correct'
+            print 'A new game start'
+            new_game()
+    else:
+        print 'No more chances to guess'
+        print 'the secret number is', secret_number
+        new_game()
+
+#create a frame
+frame = simplegui.create_frame('Guess Numbers', 300, 240)
+
+#register a handler
+frame.add_button('Range [0,100)', range_100, 150)
+frame.add_button('Range [0,1000)', range_1000, 150)
+frame.add_input('Enter your guess: ', input_guess, 150)
+frame.add_button('New game', new_game, 100)
+
+# Start the frame animation
+frame.start()
