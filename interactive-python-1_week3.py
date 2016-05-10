@@ -104,3 +104,55 @@ frame.add_button('Stop', timer.stop)
 #start a frame
 #frame.start()
 timer.start()
+
+print'\n================================================'
+print 'Exercise 8:'
+import simplegui
+
+#create a global
+store = 0
+operand = 0
+
+#define helper function
+def output():
+    print 'store:', store
+    print 'operand:', operand
+    print
+
+def swap():
+    global store
+    global operand
+    store, operand = operand, store
+    output()
+
+#define event handler 
+def add():
+    global store
+    global operand
+    store = store + operand
+    output()
+
+def sub():
+    global store
+    global operand
+    store = store - operand   
+    output()
+
+def enter(inp):
+    global store
+    global operand
+    store, operand = operand, store
+    operand = float(inp)
+    output()
+
+#create a frame
+frame = simplegui.create_frame('Test', 250, 300)
+
+#register
+frame.add_button('Print', output)
+frame.add_button('Add', add)
+frame.add_button('Sub', sub)
+frame.add_input('Enter your number', enter, 150)
+
+#start a frame
+frame.start()
