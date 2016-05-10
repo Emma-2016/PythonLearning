@@ -67,7 +67,13 @@ def f(a):
 print f(4)
 print a
 
-
+#globle(state)
+#helper functions
+#classes
+#define event handlers
+#create a frame
+#register event handlers
+#start frame & timers
 
 
 print'\n================================================'
