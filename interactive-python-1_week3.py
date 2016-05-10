@@ -7,7 +7,6 @@ print_goodbye()
 print '-----------'
 print message
 
-
 print'\n================================================'
 print 'Exercise 2:'
 def set_goodbye():
@@ -74,7 +73,6 @@ print a
 #create a frame
 #register event handlers
 #start frame & timers
-
 
 print'\n================================================'
 print 'Exercise 7:'
