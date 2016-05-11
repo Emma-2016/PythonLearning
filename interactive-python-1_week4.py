@@ -92,3 +92,48 @@ frame.set_draw_handler(draw_handler)
 #start a frame
 frame.start()
 timer.start()
+
+
+
+#-----------------------------------------------------Excise 2:
+#use timer to do looping
+import simplegui
+
+# global state
+
+result = 0
+
+# helper functions
+
+def init(start):
+    """Initializes n."""
+    global result
+    result = start
+    print "Input is", result
+
+def get_next(current):
+    if current % 2 == 0:
+        return current / 2
+    else:
+        return current * 3 + 1
+
+# timer callback
+result_set = []
+def update():
+    global result
+    if result == 1:
+        timer.stop()
+        result_set.sort()
+        print 'Output is', result_set[-1]
+    else:
+        result = get_next(result)
+        result_set.append(result)
+    
+# register event handlers
+
+timer = simplegui.create_timer(10, update)
+
+# start program
+
+init(217)
+timer.start()
